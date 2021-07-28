@@ -1,5 +1,4 @@
 @extends('admin.layout')
-
 @section('content')
 <section class="content">
     <div class="block-header">

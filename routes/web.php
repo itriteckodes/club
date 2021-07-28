@@ -13,19 +13,18 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('admin.dashboard');
-});
-
 Route::group(['namespace' => 'App\Http\Controllers'], function () {
     Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], function () {
-        // Route::group(['middleware' => 'auth:admin'], function () {
-
+        Route::view('login', 'admin.auth.login')->name('login');
+        Route::post('login', 'AuthController@login')->name('login');
+        Route::get('logout', 'AuthController@logout')->name('logout')->middleware('auth:admin');
+        Route::group(['middleware' => 'auth:admin'], function () {
             Route::view('dashboard', 'admin.dashboard')->name('dashboard');
             Route::resource('cardOne', 'CardOneController');
             Route::resource('cardTwo', 'CardTwoController');
+            Route::resource('profile', 'AdminController');
             
-        // });
+        });
     });
 });
 // Route::view('login', 'auth.login');
