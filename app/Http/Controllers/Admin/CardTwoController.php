@@ -15,7 +15,7 @@ class CardTwoController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.card2.index');
     }
 
     /**
@@ -36,7 +36,8 @@ class CardTwoController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        CardTwo::create($request->all());
+        return redirect()->back();
     }
 
     /**
@@ -70,7 +71,9 @@ class CardTwoController extends Controller
      */
     public function update(Request $request, CardTwo $cardTwo)
     {
-        //
+       
+        $cardTwo->update($request->all());
+        return redirect()->back();
     }
 
     /**
@@ -81,6 +84,7 @@ class CardTwoController extends Controller
      */
     public function destroy(CardTwo $cardTwo)
     {
-        //
+        $cardTwo->delete();
+        return redirect()->back();
     }
 }

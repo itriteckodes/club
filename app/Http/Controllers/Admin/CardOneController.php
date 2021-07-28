@@ -15,7 +15,7 @@ class CardOneController extends Controller
      */
     public function index()
     {
-        //
+        return view('admin.card1.index');
     }
 
     /**
@@ -36,7 +36,8 @@ class CardOneController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        CardOne::create($request->all());
+        return redirect()->back();
     }
 
     /**
@@ -70,7 +71,8 @@ class CardOneController extends Controller
      */
     public function update(Request $request, CardOne $cardOne)
     {
-        //
+        $cardOne->update($request->all());
+        return redirect()->back();
     }
 
     /**
@@ -81,6 +83,7 @@ class CardOneController extends Controller
      */
     public function destroy(CardOne $cardOne)
     {
-        //
+        $cardOne->delete();
+        return redirect()->back();
     }
 }

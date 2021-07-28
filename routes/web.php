@@ -16,14 +16,17 @@ use Illuminate\Support\Facades\Route;
 Route::get('/', function () {
     return view('admin.dashboard');
 });
-Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], function () {
-    // Route::group(['middleware' => 'auth:admin'], function () {
 
-        Route::view('dashboard', 'admin.dashboard')->name('dashboard');
-        Route::resource('card', 'CardOneController');
-        // Route::resource('C', 'CardTwoController');
-        
-    // });
+Route::group(['namespace' => 'App\Http\Controllers'], function () {
+    Route::group(['prefix' => 'admin', 'namespace' => 'Admin', 'as' => 'admin.'], function () {
+        // Route::group(['middleware' => 'auth:admin'], function () {
+
+            Route::view('dashboard', 'admin.dashboard')->name('dashboard');
+            Route::resource('cardOne', 'CardOneController');
+            Route::resource('cardTwo', 'CardTwoController');
+            
+        // });
+    });
 });
 // Route::view('login', 'auth.login');
 

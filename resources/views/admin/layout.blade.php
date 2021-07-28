@@ -5,7 +5,7 @@
 <meta http-equiv="X-UA-Compatible" content="IE=Edge">
 <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 <meta name="description" content="Responsive Bootstrap 4 and web Application ui kit.">
-<title>Cards | Admin</title>
+<title>B & C | Admin</title>
 <link rel="icon" href="favicon.ico" type="image/x-icon"> <!-- Favicon-->
 
 <link rel="stylesheet" href="{{asset('admin/assets/plugins/bootstrap/css/bootstrap.min.css')}}">
@@ -35,7 +35,7 @@
 <aside id="leftsidebar" class="sidebar">
     <div class="navbar-brand">
         <button class="btn-menu ls-toggle-btn" type="button"><i class="zmdi zmdi-menu"></i></button>
-        <a href="{{ url('/') }}" title="Click to go on website"><img src="{{asset('admin/assets/images/logo.svg')}}" width="25" alt="Aero"><span class="m-l-10">Cards</span></a>
+        <a href="{{ url('/') }}" title="Click to go on website"><img src="{{asset('admin/assets/images/logo.svg')}}" width="25" alt="Aero"><span class="m-l-10">B&C</span></a>
     </div>
     <div class="menu">
         <ul class="list">
@@ -120,9 +120,10 @@
                 </ul>
             </li> --}}
 
-            <li class="{{Request::is('admin/order*')? 'active':''}}"><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-hc-fw"></i><span>Cards</span></a>
+            <li class="{{Request::is('admin/card*')? 'active':''}}"><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-hc-fw"></i><span>Cards</span></a>
                 <ul class="ml-menu">
-                    <li><a href="{{route('admin.card.index')}}"> Card List</a></li>
+                    <li class="{{Request::is('admin/cardOne/index')? 'active':''}}"><a href="{{route('admin.cardOne.index')}}"> Card One</a></li>
+                    <li class="{{Request::is('admin/cardTwo/index')? 'active':''}}"><a href="{{route('admin.cardTwo.index')}}"> Card Two</a></li>
                 </ul>
             </li> 
 
