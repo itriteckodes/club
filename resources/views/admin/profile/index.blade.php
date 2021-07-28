@@ -39,11 +39,11 @@
                                                 <label>Password</label>
                                                 <input name="password"  class="form-control" type="password" placeholder="Enter your password" >
                                             </div>
-                                        </div>
-                                        <div class="form-group ml-3">
-                                            <button type="submit" class="btn btn-success waves-effect waves-light">
-                                                Update Profile
-                                            </button>
+                                            <div class="form-group ml-3">
+                                                <button type="submit" class="btn btn-success waves-effect waves-light">
+                                                    Update Profile
+                                                </button>
+                                            </div>
                                         </div>
                                     </form>
                                 </div>
