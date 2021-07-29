@@ -35,7 +35,7 @@
 <aside id="leftsidebar" class="sidebar">
     <div class="navbar-brand">
         <button class="btn-menu ls-toggle-btn" type="button"><i class="zmdi zmdi-menu"></i></button>
-        <a href="{{ url('/') }}" title="Click to go on website"><img src="{{asset('admin/assets/images/logo.svg')}}" width="25" alt="Aero"><span class="m-l-10">B&C</span></a>
+        <a href="{{ url('/') }}" title="Click to go on website"><img src="{{asset('logo.jpeg')}}" width="25" alt="Aero"><span class="m-l-10">B&C</span></a>
     </div>
     <div class="menu">
         <ul class="list">
