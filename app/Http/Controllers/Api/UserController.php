@@ -21,7 +21,7 @@ class UserController extends Controller
 
     public function edit(Request $request){
         $user = User::find($request->id);
-        return Api::setResponse('user',$user);
+        return Api::setResponse('user',$user->withToken());
     } 
     public function update(Request $request){
         if($request->has('id')){
@@ -41,7 +41,7 @@ class UserController extends Controller
         $credentials = ApiValidate::login($request, User::class);
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
-            return Api::setResponse('user', $user->withToken());
+            return Api::setResponse('user', $user);
         } else
             return Api::setError('Invalid credentials');
     }
