@@ -40,7 +40,7 @@ class UserController extends Controller
     public function login(Request $request){
         $credentials = ApiValidate::login($request, User::class);
         if (Auth::attempt($credentials)) {
-            $user = Auth::user();
+            $user = Auth::guard('user')->user();
             return Api::setResponse('user', $user);
         } else
             return Api::setError('Invalid credentials');
