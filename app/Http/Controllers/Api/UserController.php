@@ -41,7 +41,7 @@ class UserController extends Controller
         $credentials = ApiValidate::login($request, User::class);
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
-            return Api::setResponse('user', $user);
+            return Api::setResponse('user', $user->withToken());
         } else
             return Api::setError('Invalid credentials');
     }
