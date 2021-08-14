@@ -21,7 +21,7 @@ class UserController extends Controller
 
     public function edit(Request $request){
         $user = User::find($request->id);
-        return Api::setResponse('user',$user->withToken());
+        return Api::setResponse('user',$user);
     } 
     public function update(Request $request){
         if($request->has('id')){
