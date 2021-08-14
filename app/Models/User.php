@@ -62,6 +62,14 @@ class User extends Authenticatable
         ];
     }
 
+    public static function loginRules()
+    {
+        return [
+            'email'=>'email|required',
+            'password' => 'required',
+        ];
+    }
+
     public function setPasswordAttribute($value){
         $this->attributes['password'] = Hash::make($value);
     }

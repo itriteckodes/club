@@ -44,6 +44,10 @@ return [
         'admin' => [
             'driver' => 'session',
             'provider' => 'admins',
+        ], 
+        'user' => [
+            'driver' => 'session',
+            'provider' => 'users',
         ],
 
         'api' => [
@@ -81,10 +85,10 @@ return [
             'model' => App\Models\Admin::class,
         ],
 
-        // 'users' => [
-        //     'driver' => 'database',
-        //     'table' => 'users',
-        // ],
+        'users' => [
+            'driver' => 'database',
+            'table' => 'users',
+        ],
     ],
 
     /*

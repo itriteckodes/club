@@ -7,6 +7,7 @@ use App\Helpers\ApiValidate;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
@@ -34,5 +35,14 @@ class UserController extends Controller
         }else{
             return Api::setError('id is required');
         }
+    }
+
+    public function login(Request $request){
+        $credentials = ApiValidate::login($request, User::class);
+        if (Auth::attempt($credentials)) {
+            $user = Auth::user();
+            return Api::setResponse('user', $user->withToken());
+        } else
+            return Api::setError('Invalid credentials');
     }
 }
