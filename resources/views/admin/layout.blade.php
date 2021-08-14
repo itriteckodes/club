@@ -119,6 +119,11 @@
                     <li><a href="{{ route('admin.withdraw.index') }}">Withdraw History</a></li>
                 </ul>
             </li> --}}
+            <li class="{{Request::is('admin/user*')? 'active':''}}"><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-hc-fw"></i><span>Users</span></a>
+                <ul class="ml-menu">
+                    <li><a href="{{route('admin.user.index')}}"> Users List</a></li>  
+                </ul>
+            </li> 
 
             <li class="{{Request::is('admin/card*')? 'active':''}}"><a href="javascript:void(0);" class="menu-toggle"><i class="zmdi zmdi-hc-fw"></i><span>Cards</span></a>
                 <ul class="ml-menu">
@@ -126,6 +131,7 @@
                     <li class="{{Request::is('admin/cardTwo/index')? 'active':''}}"><a href="{{route('admin.cardTwo.index')}}"> Card Two</a></li>
                 </ul>
             </li> 
+            
 
             {{-- <li class="{{Request::is('admin/contact')? 'active':''}}"><a href="{{route('admin.contact.index')}}"><i class="zmdi zmdi-comments zmdi-hc-fw"></i><span>Query</span></a></li> --}}
             <li class="{{Request::is('admin/profile')? 'active':''}}"><a href="{{route('admin.profile.index')}}"><i class="zmdi zmdi-account "></i><span>Profile</span></a></li>

@@ -23,6 +23,7 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
             Route::resource('cardOne', 'CardOneController');
             Route::resource('cardTwo', 'CardTwoController');
             Route::resource('profile', 'AdminController');
+            Route::resource('user', 'UserController');
             
         });
     });

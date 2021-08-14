@@ -2,10 +2,12 @@
 
 namespace App\Models;
 
+use App\Helpers\ImageHelper;
 use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
+use Illuminate\Support\Facades\Hash;
 
 class User extends Authenticatable
 {
@@ -20,6 +22,9 @@ class User extends Authenticatable
         'name',
         'email',
         'password',
+        'picture',
+        'code',
+        'api_token',
     ];
 
     /**
@@ -30,6 +35,7 @@ class User extends Authenticatable
     protected $hidden = [
         'password',
         'remember_token',
+        'api_token',
     ];
 
     /**
@@ -39,5 +45,36 @@ class User extends Authenticatable
      */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        // 'date' => 'date'
     ];
+
+    public function withToken(){
+        return $this->makeVisible(['api_token']);
+    }
+
+    public static function registerRules()
+    {
+        return [
+            'name'=>'max:255|required',
+            'picture'=>'required',
+            'email'=>'email|required|unique:users',
+            'password' => 'min:4|required',
+        ];
+    }
+
+    public function setPasswordAttribute($value){
+        $this->attributes['password'] = Hash::make($value);
+    }
+
+    public function setPictureAttribute($value){
+        if(is_file($value)){
+            $this->attributes['picture'] = ImageHelper::saveImage($value,'images/user');
+        } else if (!empty($value)){
+            $this->attributes['picture'] = $value;
+        }
+    }
+
+    public function getPictureAttribute($value){
+        return asset($value);
+    }
 }

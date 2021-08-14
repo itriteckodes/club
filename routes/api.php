@@ -18,5 +18,8 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // });
 Route::group(['namespace' => 'App\Http\Controllers'], function () {
+    Route::any('user/register','Api\UserController@register');
+    Route::any('user/edit','Api\UserController@edit');
+    Route::any('user/update','Api\UserController@update');
     Route::any('cards','Api\CardController@index');
 });
