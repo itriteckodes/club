@@ -77,8 +77,10 @@ class User extends Authenticatable
     public function setPictureAttribute($value){
         if(is_file($value)){
             $this->attributes['picture'] = ImageHelper::saveImage($value,'images/user');
-        } else if (!empty($value)){
-            $this->attributes['picture'] = $value;
+        } else if (is_string($value)){
+            $this->attributes['picture'] = ImageHelper::saveImageFromApi($value,'images/user');
+        }else{
+            $this->attributes['picture'] = "images/user/default.png";
         }
     }
 
