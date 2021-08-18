@@ -23,6 +23,7 @@
                                             <th>Picture</th>
                                             <th>Name</th>
                                             <th>Email</th>
+                                            <th>Code</th>
                                             <th>Registration Date</th>
                                             <th>Action</th>
                                             <th>Action</th>
@@ -35,6 +36,7 @@
                                             <td><img src="{{$user->picture }}" alt="" height="50px" width="50px"></td>
                                             <td>{{$user->name }}</td>
                                             <td>{{$user->email }}</td>
+                                            <td>{{$user->code }}</td>
                                             <td>{{$user->created_at->format('d-M-y') }}</td>
                                             <td>
                                                 <button class="btn btn-sm btn-info editUser" data-toggle="modal"
