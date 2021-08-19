@@ -16,6 +16,8 @@ class UserController extends Controller
         $user = User::create([
             'code' => uniqid(60)
         ]+$credentials);
+
+        $user = User::find($user->id);
         return Api::setResponse('user', $user->withToken());
     }
 
