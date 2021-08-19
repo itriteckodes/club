@@ -48,16 +48,16 @@ class User extends Authenticatable
         // 'date' => 'date'
     ];
 
-    public function withToken(){
+    public function withToken()
+    {
         return $this->makeVisible(['api_token']);
     }
 
     public static function registerRules()
     {
         return [
-            'name'=>'max:255|required',
-            'picture'=>'required',
-            'email'=>'email|required|unique:users',
+            'name' => 'max:255|required',
+            'email' => 'email|required|unique:users',
             'password' => 'min:4|required',
         ];
     }
@@ -65,26 +65,29 @@ class User extends Authenticatable
     public static function loginRules()
     {
         return [
-            'email'=>'email|required',
+            'email' => 'email|required',
             'password' => 'required',
         ];
     }
 
-    public function setPasswordAttribute($value){
+    public function setPasswordAttribute($value)
+    {
         $this->attributes['password'] = Hash::make($value);
     }
 
-    public function setPictureAttribute($value){
-        if(is_file($value)){
-            $this->attributes['picture'] = ImageHelper::saveImage($value,'images/user');
-        } else if (is_string($value)){
-            $this->attributes['picture'] = ImageHelper::saveImageFromApi($value,'images/user');
-        }else{
+    public function setPictureAttribute($value)
+    {
+        if (is_file($value)) {
+            $this->attributes['picture'] = ImageHelper::saveImage($value, 'images/user');
+        } else if (is_string($value)) {
+            $this->attributes['picture'] = ImageHelper::saveImageFromApi($value, 'images/user');
+        } else {
             $this->attributes['picture'] = "images/user/default.png";
         }
     }
 
-    public function getPictureAttribute($value){
+    public function getPictureAttribute($value)
+    {
         return asset($value);
     }
 }
