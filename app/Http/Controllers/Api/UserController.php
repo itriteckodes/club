@@ -20,7 +20,7 @@ class UserController extends Controller
 
         if($user){
             $user = User::create([
-                'code' => 'TWB'.
+                'code' => 'TWB'
             ]+$credentials);
         }else {
             $user = User::create([
