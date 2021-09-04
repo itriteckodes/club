@@ -24,9 +24,10 @@ Route::group(['namespace' => 'App\Http\Controllers'], function () {
             Route::resource('cardTwo', 'CardTwoController');
             Route::resource('profile', 'AdminController');
             Route::resource('user', 'UserController');
-            
+            Route::view('notification','admin.notification.index')->name('notification.index');
+            Route::post('notification','NotificationController@send')->name('notification.send');
         });
-    });
+    }); 
 });
 // Route::view('login', 'auth.login');
 

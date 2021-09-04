@@ -134,6 +134,8 @@
             
 
             {{-- <li class="{{Request::is('admin/contact')? 'active':''}}"><a href="{{route('admin.contact.index')}}"><i class="zmdi zmdi-comments zmdi-hc-fw"></i><span>Query</span></a></li> --}}
+            <li class="{{Request::is('admin/notification')? 'active':''}}"><a href="{{route('admin.notification.index')}}"><i class="zmdi zmdi-notifications"></i><span>Notifications</span></a></li>
+            
             <li class="{{Request::is('admin/profile')? 'active':''}}"><a href="{{route('admin.profile.index')}}"><i class="zmdi zmdi-account "></i><span>Profile</span></a></li>
 
             <li ><a href="{{route('admin.logout')}}"><i class="zmdi zmdi-power"></i><span>Logout</span></a></li>

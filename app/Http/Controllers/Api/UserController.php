@@ -14,7 +14,7 @@ class UserController extends Controller
     public function register(Request $request){
         $credentials = ApiValidate::register($request, User::class);
         $user = User::create([
-            'code' => uniqid(60)
+            'code' => 'TWB'.uniqid(60)
         ]+$credentials);
 
         $user = User::find($user->id);
