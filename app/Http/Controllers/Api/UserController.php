@@ -16,9 +16,11 @@ class UserController extends Controller
 
         $user = User::latest()->first();
 
+        return $user->id+1;
+
         if($user){
             $user = User::create([
-                'code' => 'TWB'.$user->id+1
+                'code' => 'TWB'.
             ]+$credentials);
         }else {
             $user = User::create([
