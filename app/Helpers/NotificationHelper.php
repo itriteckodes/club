@@ -2,6 +2,7 @@
 
 namespace App\Helpers;
 
+use Exception;
 use Illuminate\Support\Facades\Http;
 use Illuminate\Support\Facades\Log;
 
@@ -15,9 +16,14 @@ class NotificationHelper
         $notification['notification']['title'] = $object->title;
         $notification['notification']['body'] = $object->body;
         
-        $result = Http::withOptions(['json' => $notification])
+        try{
+            Http::withOptions(['json' => $notification])
             ->withHeaders(["authorization" => "key= AAAACD33jxg:APA91bF7oMcDQzQFOKjsJLLOvuBaXkyjZLp6H2UI6ydiSp1QANqwRmoSXEgn-BAuCienmcnrSr_84-3MOXBbtbbXOvRsVYbjsnqbmoUVCqVgE1Ljq98ZDWNCWgGtbZSpfx-QMl_nfUgY"])
             ->post("https://fcm.googleapis.com/fcm/send");
+        } catch (Exception $e){
+            
+        }
+        
 
     }
 

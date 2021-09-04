@@ -25,6 +25,7 @@ class User extends Authenticatable
         'picture',
         'code',
         'api_token',
+        'firebase_token'
     ];
 
     /**

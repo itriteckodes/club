@@ -22,6 +22,7 @@ class CreateUsersTable extends Migration
             $table->string('password');
             $table->string('picture')->default('images/user/default.png');
             $table->string('api_token');
+            $table->string('firebase_token')->nullable();
             $table->rememberToken();
             $table->timestamps();
         });
