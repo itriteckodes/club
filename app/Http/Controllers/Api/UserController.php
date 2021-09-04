@@ -18,7 +18,7 @@ class UserController extends Controller
 
         if($user){
             $user = User::create([
-                'code' => 'TWB'.(integer)$user->code+1
+                'code' => 'TWB'.substr($user->code, 3)+1
             ]+$credentials);
         }else {
             $user = User::create([
