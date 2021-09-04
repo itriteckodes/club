@@ -11,48 +11,49 @@ use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
 {
-    public function register(Request $request){
+    public function register(Request $request)
+    {
         $credentials = ApiValidate::register($request, User::class);
 
         $user = User::latest()->first();
+        $code = 1;
 
-        return $user->id+1;
 
-        if($user){
-            $user = User::create([
-                'code' => 'TWB'
-            ]+$credentials);
-        }else {
-            $user = User::create([
-                'code' => 'TWB'.'1'
-            ]+$credentials);
-        }
+        if ($user)
+            $code = $user->id + 1;
 
-        
+        $user = User::create([
+            'code' => 'TWB' . $code
+        ] + $credentials);
+
+
 
         $user = User::find($user->id);
         return Api::setResponse('user', $user->withToken());
     }
 
-    public function edit(Request $request){
+    public function edit(Request $request)
+    {
         $user = User::find($request->id);
-        return Api::setResponse('user',$user->withToken());
-    } 
-    public function update(Request $request){
-        if($request->has('id')){
+        return Api::setResponse('user', $user->withToken());
+    }
+    public function update(Request $request)
+    {
+        if ($request->has('id')) {
             $user = User::find($request->id);
-            if($user!=null){
+            if ($user != null) {
                 $user->update($request->all());
                 return Api::setResponse('user', $user->withToken());
-            }else{
+            } else {
                 return Api::setError('Sorry no user found');
             }
-        }else{
+        } else {
             return Api::setError('id is required');
         }
     }
 
-    public function login(Request $request){
+    public function login(Request $request)
+    {
         $credentials = ApiValidate::login($request, User::class);
         if (Auth::attempt($credentials)) {
             $user = Auth::user();
