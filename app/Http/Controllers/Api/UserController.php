@@ -13,9 +13,20 @@ class UserController extends Controller
 {
     public function register(Request $request){
         $credentials = ApiValidate::register($request, User::class);
-        $user = User::create([
-            'code' => 'TWB'.uniqid(60)
-        ]+$credentials);
+
+        $user = User::latest()->first();
+
+        if($user){
+            $user = User::create([
+                'code' => 'TWB'.$user->code+1
+            ]+$credentials);
+        }else {
+            $user = User::create([
+                'code' => 'TWB'.'1'
+            ]+$credentials);
+        }
+
+        
 
         $user = User::find($user->id);
         return Api::setResponse('user', $user->withToken());
