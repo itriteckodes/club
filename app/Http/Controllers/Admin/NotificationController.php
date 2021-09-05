@@ -10,7 +10,7 @@ use Illuminate\Http\Request;
 class NotificationController extends Controller
 {
     public function send(Request $request){
-        foreach (User::all() as $user) {
+        foreach (User::where('notification',true)->get() as $user) {
             NotificationHelper::send(
                 (object) [
                     'title' => $request->title,

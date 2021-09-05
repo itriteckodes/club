@@ -18,7 +18,6 @@ class UserController extends Controller
         $user = User::latest()->first();
         $code = 1;
 
-
         if ($user)
             $code = $user->id + 1;
 
