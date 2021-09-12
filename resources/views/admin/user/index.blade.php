@@ -165,7 +165,8 @@
         $('body').on('click','.deleteUser',function(){
             let userId = $(this).attr('userId');
             $('#deleteUserForm').attr('action','{{route('admin.user.destroy','')}}'+'/'+userId);
-        });
+        }); 
+        
     });
 </script>
 
