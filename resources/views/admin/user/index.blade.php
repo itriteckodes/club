@@ -16,12 +16,14 @@
                         <div class="body">
                             <h3>All Users</h3>
                             <div class="table-responsive">
-                                <table class="table table-bordered table-striped table-hover js-basic-example dataTable">
+                                <table
+                                    class="table table-bordered table-striped table-hover js-basic-example dataTable">
                                     <thead>
                                         <tr>
                                             <th>SR#</th>
                                             <th>Picture</th>
                                             <th>Name</th>
+                                            <th>Phone</th>
                                             <th>Email</th>
                                             <th>Code</th>
                                             <th>Registration Date</th>
@@ -35,17 +37,19 @@
                                             <td>{{ $key+1 }}</td>
                                             <td><img src="{{$user->picture }}" alt="" height="50px" width="50px"></td>
                                             <td>{{$user->name }}</td>
+                                            <td>{{$user->phone }}</td>
                                             <td>{{$user->email }}</td>
                                             <td>{{$user->code }}</td>
                                             <td>{{$user->created_at->format('d-M-y') }}</td>
                                             <td>
                                                 <button class="btn btn-sm btn-info editUser" data-toggle="modal"
-                                                    data-target="#editModel" userName="{{$user->name}}" userEmail="{{$user->email}}" userId="{{$user->id}}" >Edit</button>
+                                                    data-target="#editModel" userName="{{$user->name}}"
+                                                    userPhone="{{$user->phone}}" userEmail="{{$user->email}}"
+                                                    userId="{{$user->id}}">Edit</button>
                                             </td>
                                             <td>
                                                 <button class="btn btn-sm btn-danger deleteUser" data-toggle="modal"
-                                                    data-target="#deleteModel"
-                                                    userId="{{$user->id}}">Delete</button>
+                                                    data-target="#deleteModel" userId="{{$user->id}}">Delete</button>
                                             </td>
                                         </tr>
                                         @endforeach
@@ -58,7 +62,7 @@
             </div>
         </div>
     </div>
-    
+
 </section>
 
 <div id="editModel" class="modal fade" tabindex="-1" role="dialog" aria-hidden="true">
@@ -69,33 +73,41 @@
                 <button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
             </div>
             <div class="model-body p-3">
-                <form id="updateUserForm"  method="POST" enctype="multipart/form-data">
+                <form id="updateUserForm" method="POST" enctype="multipart/form-data">
                     @csrf
                     @method('PUT')
-                        <div class="form-group ">
-                            <label>Name </label>
-                            <input name="title" class="form-control" id="name" type="text" placeholder="Enter name " required>
-                        </div>
-                        <div class="form-group">
-                            <label for="link">Email</label>
-                            <input type="email" name="link" id="email" class="form-control" placeholder="Enter email" required>
-                        </div>
-                        <div class="form-group">
-                            <label for="link">Password</label>
-                            <input type="password" name="password" id="password" class="form-control" placeholder="Enter password">
-                        </div>
-                        <div class="form-group">
-                            <label for="image">Picture</label>
-                            <input type="file" name="image" id="image" class="form-control">
-                        </div>
-                        <div class="form-group ">
-                            <button type="submit" class="btn btn-success waves-effect waves-light">
-                                Update User
-                            </button>
-                        </div>
+                    <div class="form-group ">
+                        <label>Name </label>
+                        <input name="title" class="form-control" id="name" type="text" placeholder="Enter name "
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="link">Email</label>
+                        <input type="email" name="link" id="email" class="form-control" placeholder="Enter email"
+                            required>
+                    </div>
+                    <div class="form-group">
+                        <label for="link">Phone</label>
+                        <input type="number" name="phone" id="phone" class="form-control"
+                            placeholder="Enter Phone Number" required>
+                    </div>
+                    <div class="form-group">
+                        <label for="link">Password</label>
+                        <input type="password" name="password" id="password" class="form-control"
+                            placeholder="Enter password">
+                    </div>
+                    <div class="form-group">
+                        <label for="image">Picture</label>
+                        <input type="file" name="image" id="image" class="form-control">
+                    </div>
+                    <div class="form-group ">
+                        <button type="submit" class="btn btn-success waves-effect waves-light">
+                            Update User
+                        </button>
+                    </div>
                 </form>
             </div>
-           
+
         </div>
     </div>
 </div>
@@ -129,7 +141,7 @@
 
 @section('scripts')
 <script src="{{asset('assets/plugins/select2/select2.min.js')}}"></script>
-<script src="{{asset('assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js')}}"></script> 
+<script src="{{asset('assets/plugins/bootstrap-tagsinput/bootstrap-tagsinput.js')}}"></script>
 <script src="{{asset('assets/bundles/datatablescripts.bundle.js')}}"></script>
 <script src="{{asset('assets/plugins/jquery-datatable/buttons/dataTables.buttons.min.js')}}"></script>
 <script src="{{asset('assets/plugins/jquery-datatable/buttons/buttons.bootstrap4.min.js')}}"></script>
@@ -144,7 +156,9 @@
             let userId = $(this).attr('userId');
             let userName = $(this).attr('userName');
             let userEmail = $(this).attr('userEmail');
+            let userPhone = $(this).attr('userPhone');
             $('#name').val(userName);
+            $('#phone').val(userPhone);
             $('#email').val(userEmail);
             $('#updateUserForm').attr('action','{{route('admin.user.update','')}}'+'/'+userId);
         }); 
